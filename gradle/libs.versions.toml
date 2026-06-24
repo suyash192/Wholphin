@@ -5,6 +5,8 @@ agp = "9.2.1"
 auto-service = "1.1.1"
 autoServiceKsp = "1.2.0"
 desugar_jdk_libs = "2.1.5"
+exoplayerhdrutils = "0.3.0"
+jellyfin-media3-ext = "1.9.0+1"
 hiltNavigationCompose = "1.3.0"
 hiltWork = "1.3.0"
 kache = "2.1.1"
@@ -48,6 +50,8 @@ runner = "1.7.0"
 wholphin-extensions = "0.1.3"
 
 [libraries]
+exoplayerhdrutils = { module = "com.suyashbelekar:exoplayerhdrutils", version.ref = "exoplayerhdrutils" }
+jellyfin-media3-ext = { module = "org.jellyfin.media3:media3-ffmpeg-decoder", version.ref = "jellyfin-media3-ext" }
 wholphin-extensions-mpv = { module = "com.github.damontecres.wholphin.mpv:wholphin-mpv", version.ref = "wholphin-extensions" }
 wholphin-extensions-ffmpeg = { module = "com.github.damontecres.wholphin.media3:decoder-ffmpeg", version.ref = "wholphin-extensions" }
 wholphin-extensions-av1 = { module = "com.github.damontecres.wholphin.media3:decoder-av1", version.ref = "wholphin-extensions" }

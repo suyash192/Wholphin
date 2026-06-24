@@ -1,5 +1,6 @@
 package com.github.damontecres.wholphin.ui
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import coil3.ImageLoader
@@ -9,6 +10,7 @@ import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
 import coil3.network.CacheStrategy
+import coil3.network.ConnectivityChecker
 import coil3.network.NetworkRequest
 import coil3.network.NetworkResponse
 import coil3.network.cachecontrol.CacheControlCacheStrategy
@@ -95,11 +97,16 @@ fun CoilConfig(
                     OkHttpNetworkFetcherFactory(
                         cacheStrategy = { WholphinCacheStrategy(CacheControlCacheStrategy()) },
                         callFactory = { client },
+                        connectivityChecker = ::createCoilConnectivityChecker
                     ),
                 )
             }.build()
     }
 }
+
+@Suppress("UNUSED_PARAMETER")
+@ExperimentalCoilApi
+fun createCoilConnectivityChecker(context: Context) = ConnectivityChecker { true }
 
 /**
  * This [CacheStrategy] always prefers the cached response for Trickplay images,

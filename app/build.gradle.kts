@@ -58,7 +58,7 @@ configure<ApplicationExtension> {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.github.damontecres.wholphin"
+        applicationId = "com.suyashbelekar.wholphin"
         minSdk = 23
         targetSdk = 36
         versionCode = gitTags.trim().lines().size
@@ -350,6 +350,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.kache)
     implementation(libs.kache.file)
+
+    implementation(libs.exoplayerhdrutils)
+    implementation(libs.jellyfin.media3.ext)
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
