@@ -33,6 +33,10 @@ import com.github.damontecres.wholphin.preferences.PlayerBackend
 import com.github.damontecres.wholphin.preferences.get
 import com.github.damontecres.wholphin.services.hilt.AuthOkHttpClient
 import com.github.damontecres.wholphin.util.WholphinDispatchers
+import com.suyashbelekar.exoplayerhdrutils.exoplayer.source.HdrCompatMediaSourceFactory
+import com.suyashbelekar.exoplayerhdrutils.video.transformers.DoviStrategy
+import com.suyashbelekar.exoplayerhdrutils.video.transformers.Hdr10PlusStrategy
+import com.suyashbelekar.exoplayerhdrutils.video.transformers.TransformStrategy
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.peerless2012.ass.media.AssHandler
 import io.github.peerless2012.ass.media.factory.AssRenderersFactory
@@ -142,9 +146,20 @@ class PlayerFactory
                                 disableAudioOffload = disableAudioOffload,
                             )
 
+                        val transformStrategy = TransformStrategy(
+                            doviP7Fel = DoviStrategy.DISCARD,
+                            doviP7Mel = DoviStrategy.CONVERT_TO_P8,
+                            doviHdr10Plus = Hdr10PlusStrategy.DISCARD
+                        )
+
                         ExoPlayer
                             .Builder(context)
-                            .setMediaSourceFactory(mediaSourceFactory)
+                            .setMediaSourceFactory(
+                                HdrCompatMediaSourceFactory(
+                                    mediaSourceFactory,
+                                    transformStrategy
+                                )
+                            )
                             .setRenderersFactory(renderersFactory)
                             .setTrackSelector(trackSelector)
                             .build()
