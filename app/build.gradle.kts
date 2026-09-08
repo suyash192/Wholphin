@@ -67,7 +67,7 @@ kotlin {
 
 configure<ApplicationExtension> {
     namespace = "com.github.damontecres.wholphin"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.suyashbelekar.wholphin"
